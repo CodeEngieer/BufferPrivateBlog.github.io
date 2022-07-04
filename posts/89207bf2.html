@@ -723,7 +723,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-07-02
+                    2022-07-04
                 </div>
                 
 
@@ -3049,7 +3049,8 @@ document<span class="token punctuation">.</span>cookie <span class="token operat
 		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">onload</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>checkCookie()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="DOM对象：（文件对象模型）"><a href="#DOM对象：（文件对象模型）" class="headerlink" title="DOM对象：（文件对象模型）"></a>DOM对象：（文件对象模型）</h2><ul>
+<h2 id="DOM对象：（文件对象模型）"><a href="#DOM对象：（文件对象模型）" class="headerlink" title="DOM对象：（文件对象模型）"></a>DOM对象：（文件对象模型）</h2><p><strong>DOM = Document Object Model（文档对象模型）</strong></p>
+<ul>
 <li>JavaScript 能够改变页面中的所有 HTML 元素</li>
 <li>JavaScript 能够改变页面中的所有 HTML 属性</li>
 <li>JavaScript 能够改变页面中的所有 CSS 样式</li>
@@ -4252,7 +4253,7 @@ new Valine({
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             collapseDepth: Number('3'),
-            headingSelector: 'h1, h2, h3, h4'
+            headingSelector: 'h1, h2, h3, h4,h5,h6'
         });
 
         // modify the toc link href to support Chinese.
@@ -4264,7 +4265,7 @@ new Valine({
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+        $('#articleContent').children('h1, h2, h3, h4,h5,h6').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -4396,7 +4397,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">93.4k</span>&nbsp;字
+                class="white-color">99.9k</span>&nbsp;字
             
             
             
