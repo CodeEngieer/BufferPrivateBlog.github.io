@@ -735,21 +735,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-07-01
+                    2022-07-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    13
+                    4.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    19 分
                 </div>
                 
 
@@ -772,8 +772,868 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Unity游戏引擎"><a href="#Unity游戏引擎" class="headerlink" title="Unity游戏引擎"></a>Unity游戏引擎</h1><p>//即将更新，敬请期待</p>
+                <h1 id="Unity游戏引擎"><a href="#Unity游戏引擎" class="headerlink" title="Unity游戏引擎"></a>Unity游戏引擎</h1><h2 id="预制体：prefab"><a href="#预制体：prefab" class="headerlink" title="预制体：prefab"></a>预制体：prefab</h2><ul>
+<li>对预制件的修改，可以同步到所有实例，从而提高开发效率</li>
+</ul>
+<p>Select键：通过预制体实例选择对应预制件</p>
+<p>Revert键·：放弃实例属性值，还原预制件属性值</p>
+<p>Apply键：将某一实例的修改应用到所有实例</p>
+<h2 id="脚本：Script"><a href="#脚本：Script" class="headerlink" title="脚本：Script"></a>脚本：Script</h2><h3 id="C-："><a href="#C-：" class="headerlink" title="C# ："></a>C# ：</h3><p>标识符：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">//序列化字段，在编辑器中显示字段
+[Serilization]; 
+//在编译器中隐藏字段
+[HideInInspector]
+//变量显示可滑动调节
+[Range(0,100)]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>方法名作用：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">private void Awake()
+    {
+        //Debug.Log(this.name + "：Awake：Lifecycle");
+    }
+    //游戏物体加载   ---&gt; 等待脚本启用  --&gt; 才执行(仅1次)
+    private void Start()
+    {
+        //Debug.Log(this.name + "：Start：" + Time.time); 
+    } 
+    private void OnMouseDown()
+    {
+        Debug.Log("执行喽");
+    }
+
+    //固定更新
+    //固定时间(默认0.02s)  执行 1次
+    //作用：对物体执行物理操作(移动、旋转、施加力……)
+    //
+    private void FixedUpdate()
+    {
+        //向前移动1m
+    } 
+    //每渲染帧(大概0.02s)   执行1次
+    //作用：执行游戏逻辑
+    private void Update()
+    {
+        //向前移动1m
+        
+        //查看某一帧程序执行情况
+ //启动调试 F5  --&gt;  运行场景  --&gt;  暂停  --&gt;  在可能出错的行加断点  --&gt;  单帧运行 --&gt; 调试……  --&gt; 停止调试 Shift + F5
+        int a = 1;
+        int b = 2;
+        int c = a + b;
+
+    } 
+    //延迟更新：在Update之后执行
+    //作用：适合执行跟随Update移动的代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Component-：查找组件"><a href="#Component-：查找组件" class="headerlink" title="Component ：查找组件"></a>Component ：查找组件</h4><p>常用方法：</p>
+<ul>
+<li>GetComponent：获取当前物体其他组件类型的引用</li>
+<li>GetComponents：获取当前所有组件引用</li>
+<li>GetComponentInChildren：查找指定类型组件（从自身开始，并搜索所有后代，查找到第一个满足条件则结束）</li>
+<li>GetComponentsInChildren：查找指定类型组件（从自身开始，并搜索所有后代）</li>
+<li>GetComponentsInParent：查找指定类型组件（从自身开始，并搜索所有先辈）</li>
+</ul>
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using System;
+using UnityEngine;
+public class ComponentDemo:MonoBehavior{
+    private void OnGUI(){
+  if (GUILayout.Button("将当前物体颜色设置为红"))
+  { 
+ GetComponent&lt;MeshRenderer&gt;().material.color = Color.red;
+   }
+//遍历所有组件
+   if(GUILayout.Button("获取当前所有组件")){
+   var allComponents = GetComponents&lt;Component&gt;();
+  foreach(var item in allComponents){
+      Debug.Log(item);   //看控制台打印物体组件
+  }
+  if (GUILayout.Button("获取所有子物体中的MeshRenderer"))
+  {
+   var allRenderer = GetComponentsInChildren&lt;MeshRenderer&gt;();
+   foreach (var item in allRenderer)
+   {
+    item.material.color = Color.red;
+     }
+        }
+   if (GUILayout.Button("获取所有先辈物体中的MeshRenderer"))
+   {
+     var allRenderer = GetComponentsInParent&lt;MeshRenderer&gt;();
+     foreach (var item in allRenderer)
+    {
+      item.material.color = Color.red;
+     }
+   }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Camera-相机控制："><a href="#Camera-相机控制：" class="headerlink" title="Camera 相机控制："></a>Camera 相机控制：</h4><table>
+<thead>
+<tr>
+<th>常用API</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ClearFlags();</td>
+<td>清除标识，确定屏幕哪些部分将被清楚</td>
+</tr>
+<tr>
+<td>Skybox();</td>
+<td>天空盒，屏幕上的任何空的部分将显示当前相机的天空盒。 如果当前的相机没有设置天空盒，它会默认在渲染设置（Render Settings ）选择天空盒</td>
+</tr>
+<tr>
+<td>SolidColor();</td>
+<td>纯色，屏幕空白部分将显示当前摄像机背景色</td>
+</tr>
+<tr>
+<td>DepthOnly();</td>
+<td>深度相机，只渲染采集到的画面</td>
+</tr>
+<tr>
+<td>Background();</td>
+<td>背景色</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using System;
+using UnityEngine;
+public class CameraDemo:MonoBevior{
+    private void update(){
+        float x = Input.getAxis("鼠标X轴方向");
+        float y = Input.getAxis("鼠标Y轴方向");
+        if(x!=0||y!=0){
+            RotateView(x,y);
+        }
+    public float speed =10;
+    private void RotateView(float x,float y){
+        x*=speed*Time.deltaTime;
+        y*=speed*Time.deltaTime;
+        
+        transform.Rotate(-y,0,0);
+        transform.Rotate(0,x,Space.World);
+    }
+    }
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h4 id="GameObject：物体对象："><a href="#GameObject：物体对象：" class="headerlink" title="GameObject：物体对象："></a>GameObject：物体对象：</h4><p>构造函数：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">void Start(){
+    new GameObject();   //运行游戏场景里面一个空物体
+    new GameObject("Unity");  //new 一个物体给他取一个名字
+    new GameObject().name = "Unity";
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>常用API：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">GameObject</span> gameobject<span class="token punctuation">;</span>
+ <span class="token keyword">void</span> <span class="token class-name">Find</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">==</span><span class="token operator">&gt;</span> game<span class="token punctuation">.</span><span class="token class-name">Find</span><span class="token punctuation">(</span><span class="token string">"GameObject"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token class-name">FindWithTag</span><span class="token punctuation">(</span><span class="token string">"Player"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//根据Tag查找一个Object</span>
+<span class="token punctuation">.</span><span class="token class-name">FindGameObjectsWithTag</span><span class="token punctuation">(</span><span class="token string">"Player"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//根据Tag批量查找GameObject</span>
+<span class="token punctuation">.</span><span class="token class-name">FindObjectOfType</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Camera</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//查找带有Camera组件的物体只找一个</span>
+<span class="token punctuation">.</span><span class="token class-name">Destroy</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//删除obj</span>
+
+<span class="token class-name">Camera</span><span class="token punctuation">[</span><span class="token punctuation">]</span> allcamera <span class="token operator">=</span> <span class="token class-name">GameObjectOfType</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Camera</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//查找所有带有Camera组件的物体返回</span>
+bool b <span class="token operator">=</span> <span class="token class-name">GameObject</span><span class="token punctuation">.</span><span class="token class-name">Equals</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//判断两个物体是否一样返回</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">//在一个烹饪游戏中有一个厨师角色，厨房中有多个炉子（每个都标记为 “Stove”）
+using System.Collection.Generic;
+using UnityEngine;
+public class Demo:Monobehavior{
+public GameObject chef;     //厨师
+public GameObject[] stoves;   //炉子
+public GameObject Demo;   //创建物体实例，查找所有场景（Scene）的物体实例
+    void Start(){
+        chef = GameObject.FindWithTag("Chef");   //寻找Scene中Chef的GameObject
+        stoves = GameObject.FindGameObjectWithTag("Stove");
+        Destroy(chef,0.5f);
+    }
+    
+    
+    void update(){
+        
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+public class WayPonint:MonoBehaviour{
+    public Transform[] waypoints;
+    void Start(){
+        wayponints =new Transform[transform.childCount];
+        int i=0;
+        foreach(Transform t in transform){
+            waypoints[i++] = t;
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Debug：打印输出"><a href="#Debug：打印输出" class="headerlink" title="Debug：打印输出"></a>Debug：打印输出</h4><p>常用方法：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">//相当于
+//System.out.println("向控制台输出打印信息");
+//Console.WriteLine("向控制台输出打印信息");
+Debug.Log();  //向控制台输出普通信息
+Debug.LogWarningf();   //向控制台输出警告信息（白色）
+Debug.LogError();   //向控制台输出错误信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine.UI;
+public class GUITest:MonoBehavior{
+    void Start(){
+      Debug.Log("普通信息");
+      Debug.Log("警告信息");
+      Debug.LogError("错误信息");
+    }
+    private void update(){
+        if(Input.GetKeyDown(keyCode.T)){
+            //事件检测是否按下T键
+            Debug.Log("你按下了T键");
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Object（物体）："><a href="#Object（物体）：" class="headerlink" title="Object（物体）："></a>Object（物体）：</h4><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">
+
+
+
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h4 id="Mathf（数学）："><a href="#Mathf（数学）：" class="headerlink" title="Mathf（数学）："></a>Mathf（数学）：</h4><p>常用API：</p>
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">
+
+
+
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Time：（时间）"><a href="#Time：（时间）" class="headerlink" title="Time：（时间）"></a>Time：（时间）</h4><ol>
+<li>time：从游戏开始到现在所用的时间</li>
+<li>timeScale：时间缩放</li>
+<li>deltaTime：以秒为单位，表示每帧的经过时间</li>
+<li>unscaledDeltaTime：不受缩放影响的每帧经过时间</li>
+</ol>
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using System;
+using System.UnityEngine;
+public class Demo:MonoBehavior{
+private float speed =10;
+/*
+         Time.timeScale 
+         不影响渲染  所以 Update 执行间隔不受影响
+         影响物理更新 所以FidexUpdate执行间隔受间隔
+         Time.deltaTime  受影响
+         */
+   private void OnGUI(){
+       if(GUILayout.Button("游戏暂停")){
+           Time.timeScale =0;
+       }
+       if(GUILayout.Button("游戏继续")){
+           Time.timeScale =1;
+       }
+       if(GUILayout.Button("慢动作")){
+           Time.timeScale =0.1f;
+       }
+  public float deltaTime, unscaledDeltaTime, time, unscaledTime;
+  private void Update()
+  { 
+        //本帧时间  -   上一帧时间
+        //上一帧消耗时间初始化
+        deltaTime = Time.deltaTime;
+        unscaledDeltaTime = Time.unscaledDeltaTime;
+        time = Time.time;
+        unscaledTime = Time.unscaledTime;   
+     private void FixedUpdate()
+    {  
+        transform.Rotate(0, speed * Time.deltaTime, 0);
+    }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Transform：物体功能"><a href="#Transform：物体功能" class="headerlink" title="Transform：物体功能"></a>Transform：物体功能</h4><p>Transform 类 提供了查找(根据名字、索引获取子物体)、移动、旋转、缩放物体的功能。</p>
+<p>常用API：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">/*
+Varibles:
+   childCount：子物体相对于父物体坐标[编译器中显示的]
+   localPosition：子物体相对于父物体的缩放比例[编译器中]
+   lossyScale：(只读)可以理解为相对于模型的缩放比(父物体.localScale * 自身物体.localScale)
+   parent
+   position：相对于世界坐标系坐标
+   root
+-- public Functions
+  Find: 通过名称查找子物体
+  GetChild：根据索引获取子物体
+  LookAt：
+  Rotate：
+  RotateAround：
+  SetParent
+  Translate：
+  */<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System;
+public Transform targetTF;
+public class TransformDemo:MonoBehavior{
+    private void OnGUI(){
+/*------------------物体移动相关操作------------------*/
+   if(GUILayout.Button("自传")){
+       transform.Rotate(0,1,0);  //沿自身坐标轴
+       transform.Rotate(0,1,0,Space.World);  //沿世界身坐标轴
+   }
+   if(GUILayout.RepeatButton("移动")){
+       transform.Translate(0,0,1);  
+       transform.Translate(0,1,0,Space.World);
+   }
+   if(GUILayout.Button("LookAt")){
+       //注释旋转，物体z轴指向目标位置
+      transform.LookAt(targetTF);
+   }
+   if(GUILayout.RepeatButton("围绕旋转")){
+    //(围绕的目标点,围绕的轴向，围绕的角度)
+    transform.RotateAround(targetTF,Vector3.forward,1);
+   }
+  if(GUILayout.RepeatButton("设置父物体")){
+      //将当前物体设置为targetTF的子物体
+     transform.SetParent(targetTF);
+       }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Vector：向量"><a href="#Vector：向量" class="headerlink" title="Vector：向量"></a>Vector：向量</h4><p>常用API：</p>
+<table>
+<thead>
+<tr>
+<th>常用API</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+public class VectorAPI:MonoBehavior{
+    private void Start(){
+ //因为 position 是属性，所以返回数据副本，直接修改z无效。所以编译错误。
+ //transform.position.z = 1;
+
+ public Transform t1,t2,t3;
+ private void update(){
+     Demo1();
+ }
+ //计算向量的长度：
+ private void Demo01(){
+     Vector3 pos = transform.position;
+    float m1 = Mathf.Sqrt(Mathf.Pow(pos.x, 2) + Mathf.Pow(pos.y, 2) + Mathf.Pow(pos.z, 2));
+        float m2 = pos.magnitude;
+        print(m1 + "----" + m2);
+    }
+
+        
+//计算向量方向
+    private void Demo02()
+    {
+        Vector3 pos = transform.position;
+
+        Vector3 n1 = pos / pos.magnitude;
+        Vector3 n2 = pos.normalized;
+
+        Debug.DrawLine(Vector3.zero, n1, Color.red);
+    }
+//向量运算法则
+//需求：t3沿着result方向移动
+    private void Demo3(){
+        Vector3 result =t1.postion -t2.position;
+       if(Input.GetMouseButtonDown(0)){
+          t3.position =t3.position + result.norlizmed;
+    Debug.DrawLine(Vector3.zero, t1.position);
+        Debug.DrawLine(Vector3.zero, t2.position);
+        Debug.DrawLine(Vector3.zero, result, Color.red);
+       }
+ //已知向量a  长度为8.3m
+ //计算该方向 长度为1.5m的向量
+ //解决方案：将ａ向量标准化，　再乘以1.5
+
+ //弧度与角度：
+ //弧度=角度数*pi/180;
+    private void Demo04(){
+        float f1 = 50;
+        float f2 =f1*Mathf.PI/180;
+        float f3 = f1*Mathf.Deg2Rad;
+        
+    }
+    
+//三角函数：
+        
+    }
+}
+
+
+
+
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Animation：动画"><a href="#Animation：动画" class="headerlink" title="Animation：动画"></a>Animation：动画</h4><p>构造函数：</p>
+<table>
+<thead>
+<tr>
+<th>常用API</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">//开关门动画
+using UnityEngine;
+pulic class Door:MonoBehavior{
+    public Animation animation;
+    public bool doorState =false;   //门所处状态
+    public string animalName = "Door";
+    public void Start(){
+        animation = GetComponent&lt;Animation&gt;();
+    }
+   private void OnMouseDown(){
+       //开门方法
+      if(doorState){
+      //如果当前动画组件没有播放动画片段
+          if(!animation.isPlaying animation[animalName].time = animation[animalName.length]);
+       animation[animalName].speed =-1;
+      }else{
+          animation[animalName].speed =1;
+      }
+      //开门方法
+      animation.Play(aninName);
+      doorState =!doorState;
+   }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Unity3D-GUI界面："><a href="#Unity3D-GUI界面：" class="headerlink" title="Unity3D GUI界面："></a>Unity3D GUI界面：</h2><h3 id="OnGUI控件："><a href="#OnGUI控件：" class="headerlink" title="OnGUI控件："></a>OnGUI控件：</h3><h4 id="Button类："><a href="#Button类：" class="headerlink" title="Button类："></a>Button类：</h4><h5 id="Button：-完成"><a href="#Button：-完成" class="headerlink" title="Button：(完成)"></a>Button：(完成)</h5><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">private void OnGUI(){
+    if(GUILayout.Button("按钮"))
+    {
+     print("按钮被点击");
+     Debug.log("控制台输出文字");
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="RadioButton：（完成）"><a href="#RadioButton：（完成）" class="headerlink" title="RadioButton：（完成）"></a>RadioButton：（完成）</h5><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+public class GUITest: MonoBehaviour{
+    void OnGUI(){
+     if(GUI.RepeatButton(new Rect(25,25,100,30),"测试文字")){
+         //RepeatButton 保持点击状态时每一帧都将执行此代码
+     }   
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="Toggle：（完成）"><a href="#Toggle：（完成）" class="headerlink" title="Toggle：（完成）"></a>Toggle：（完成）</h5><p><strong>Toggle</strong> 控件创建具有持久开/关状态的复选框。用户可通过点击该复选框来更改状态。</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+public class GUITest : MonoBehaviour 
+{
+    private bool toggleBool = true;
+    
+    void OnGUI () 
+    {
+        toggleBool = GUI.Toggle (new Rect (25, 25, 100, 30), toggleBool, "Toggle");
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="ToolBar：-完成"><a href="#ToolBar：-完成" class="headerlink" title="ToolBar：(完成)"></a>ToolBar：(完成)</h5><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+public class GUITest : MonoBehaviour 
+{
+                    
+    private int toolbarInt = 0;
+    private string[] toolbarStrings = {"Toolbar1", "Toolbar2", "Toolbar3"};
+    
+    void OnGUI () 
+    {
+        toolbarInt = GUI.Toolbar (new Rect (25, 25, 250, 30), toolbarInt, toolbarStrings);
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="SelectionGrid：（完成）"><a href="#SelectionGrid：（完成）" class="headerlink" title="SelectionGrid：（完成）"></a>SelectionGrid：（完成）</h5><p><strong>SelectionGrid</strong> 控件是一种多行 <strong>Toolbar</strong>。您可以决定网格中的列数和行数。一次只能激活一个 Button。</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+public class GUITest : MonoBehaviour 
+{                   
+    private int selectionGridInt = 0;
+    private string[] selectionStrings = {"Grid 1", "Grid 2", "Grid 3", "Grid 4"   
+    void OnGUI () 
+    {
+        selectionGridInt = GUI.SelectionGrid (new Rect (25, 25, 300, 60), selectionGridInt, selectionStrings, 2);   
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="Label：（完成）"><a href="#Label：（完成）" class="headerlink" title="Label：（完成）"></a>Label：（完成）</h4><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+
+public class GUITest:Monobehaviour{
+    void OnGui()
+    {
+        GUI.Label(new Rect(25,25,100,30),"显示文字");
+    }       
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Slider类：-完成"><a href="#Slider类：-完成" class="headerlink" title="Slider类：(完成)"></a>Slider类：(完成)</h4><h5 id="HorizontalSlider："><a href="#HorizontalSlider：" class="headerlink" title="HorizontalSlider："></a>HorizontalSlider：</h5><p><strong>HorizontalSlider</strong> 控件是一个典型的水平滑钮，可拖动该滑钮来更改介于预定最小值和最大值之间的值。</p>
+<p>滑钮的位置存储为浮点数。要显示滑钮的位置，请将该浮点数作为函数中的参数之一。此外还有两个值用于确定最小值和最大值。如果希望滑钮可调，请将滑动条值浮点数指定为 Slider 函数的返回值。</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+public class GUITest : MonoBehaviour 
+{                 
+    private float hSliderValue = 0.0f;
+    void OnGUI () 
+    {
+        hSliderValue = GUI.HorizontalSlider (new Rect (25, 25, 100, 30), hSliderValue, 0.0f, 10.0f);
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="VerticalSlider："><a href="#VerticalSlider：" class="headerlink" title="VerticalSlider："></a>VerticalSlider：</h5><p><strong>VerticalSlider</strong> 控件是一个典型的垂直滑钮，可拖动该滑钮来更改介于预定最小值和最大值之间的值。</p>
+<p>滑钮的位置存储为浮点数。要显示滑钮的位置，请将该浮点数作为函数中的参数之一。此外还有两个值用于确定最小值和最大值。如果希望滑钮可调，请将滑动条值浮点数指定为 Slider 函数的返回值。</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+public class GUITest : MonoBehaviour 
+{                
+    private float vSliderValue = 0.0f;   
+    void OnGUI () 
+    {
+        vSliderValue = GUI.VerticalSlider (new Rect (25, 25, 100, 30), vSliderValue, 10.0f, 0.0f);
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="ScrollView"><a href="#ScrollView" class="headerlink" title="ScrollView"></a>ScrollView</h4><p><strong>ScrollView</strong> 控件可显示一个包含更大控件集合的可视区域。</p>
+<p>ScrollView 需要两个 <strong>Rect</strong> 作为参数。第一个 <strong>Rect</strong> 定义 ScrollView 可视区域在屏幕上的位置和大小。第二个 <strong>Rect</strong> 定义可视区域内包含的空间大小。如果可视区域内的空间大于可视区域，则会根据需要显示滚动条。还必须分配并提供 2D 矢量，该矢量用于存储显示的可视区域的位置。</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+public class GUITest : MonoBehaviour 
+{               
+    private Vector2 scrollViewVector = Vector2.zero;
+    private string innerText = "这是一段写在ScrollView上的测试文字";
+    void OnGUI () 
+    {
+        // 开始 ScrollView
+        scrollViewVector = GUI.BeginScrollView (new Rect (25, 25, 100, 100), scrollViewVector, new Rect (0, 0, 400, 400));
+        // 在 ScrollView 中放入一些内容
+        innerText = GUI.TextArea (new Rect (0, 0, 400, 400), innerText);
+        // 结束 ScrollView
+        GUI.EndScrollView();
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="TextArea：（完成）"><a href="#TextArea：（完成）" class="headerlink" title="TextArea：（完成）"></a>TextArea：（完成）</h5><p><strong>TextArea</strong> 控件是一个包含文本字符串的交互式可编辑多行区域。</p>
+<p>TextArea 将始终显示一个字符串。必须提供要在 TextArea 中显示的字符串。对字符串进行编辑时，TextArea 函数将返回已编辑的字符串。</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+public class GUITest : MonoBehaviour
+{                 
+    private string textAreaString = "text area";
+    void OnGUI ()
+    {
+        textAreaString = GUI.TextArea (new Rect (25, 25, 100, 30), textAreaString);
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="TextField：（完成）"><a href="#TextField：（完成）" class="headerlink" title="TextField：（完成）"></a>TextField：（完成）</h5><p>TextField 将始终显示一个字符串。必须提供要在 TextField 中显示的字符串。对字符串进行编辑时，TextField 函数将返回已编辑的字符串。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">using UnityEngine<span class="token punctuation">;</span>
+using System<span class="token punctuation">.</span>Collections<span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GUITest</span><span class="token operator">:</span>MonoBehaviour<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> string textFieldString <span class="token operator">=</span> <span class="token string">"文本框上显示的文字"</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">void</span> <span class="token function">OnGUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        textFieldString <span class="token operator">=</span><span class="token constant">GUI</span><span class="token punctuation">.</span><span class="token function">TextField</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Rect</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span><span class="token number">25</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span>textFieldString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">//连接到Main Camera上</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Panel："><a href="#Panel：" class="headerlink" title="Panel："></a>Panel：</h4><p>面板实际上就是一个容器，在其上可放置其他 UI 控件。</p>
+<p>当移动面板时，放在其中的 UI 控件就会跟随移动，这样可以更加合理与方便地移动与处理一组控件。</p>
+<p>拖动面板控件的 4 个角或 4 条边可以调节面板的大小。一个功能完备的 UI 界面往往会使用多个 Panel 容器控件，而且一个面板里还可套用其他面板，如下图所示。  </p>
+<p>Source Image 用来设置面板的图像，Color 用来改变面板的颜色。</p>
+<h5 id="Unity特殊类："><a href="#Unity特殊类：" class="headerlink" title="Unity特殊类："></a>Unity特殊类：</h5><h5 id="RepeatButton-："><a href="#RepeatButton-：" class="headerlink" title="RepeatButton(*)："></a>RepeatButton(*)：</h5><p>_RepeatButton__ 将响应鼠标按键保持按下状态的每一帧。由此可以创建单击并保持功能。</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+public class GUITest : MonoBehaviour 
+{                   
+    void OnGUI () 
+    {
+        if (GUI.RepeatButton (new Rect (25, 25, 100, 30), "RepeatButton")) 
+        {
+            // RepeatButton 保持点击状态时的每一帧都将执行此代码
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="ToolTip-："><a href="#ToolTip-：" class="headerlink" title="ToolTip(*)："></a>ToolTip(*)：</h5><h5 id="DragWindow-："><a href="#DragWindow-：" class="headerlink" title="DragWindow(*)："></a>DragWindow(*)：</h5><p>构造函数：</p>
+<pre class="line-numbers language-;" data-language=";"><code class="language-;">public static function DragWindow(position:Rect): void<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">Font(字体) 用户图形界面每个控件使用的字体
+Box(盒) 应用于所有盒子控件的样式
+Button(按钮) 应用于所有按钮控件样式
+Toggle(切换开关)  应用于所有切换开关样式
+Label(标签) 应用于所有标签控件样式
+TextField(文本框);
+TextArea(文本区域);
+window(窗口);
+Horizontal/Vertical Slider(水平/垂直滑动条);
+Horizontal/Vertical Slider Thumb(水平滑块);
+Horizontal/Vertical Scrollbar Thumb(水平滚动条滑块);
+Horizontal/Vertical Scrollbar Left/Right Button(水平滚动条左右侧按钮)
+Horizontal Scrollbar Up/Down button(水平/垂直滚动条顶/底部按钮)
+Custom 1-20(自定义样式);
+Custom Styles(自定义样式);
+Settin(设定) 所有图形用户界面的附加设定<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="Skin（皮肤）："><a href="#Skin（皮肤）：" class="headerlink" title="Skin（皮肤）："></a>Skin（皮肤）：</h5><p> Assets→Create→GUI Skin 命令，创建后的 GUI Skin 如下图所示，具体参数如下表所示。</p>
+<p>参数列表：</p>
+<h5 id="Window（控件容器）："><a href="#Window（控件容器）：" class="headerlink" title="Window（控件容器）："></a>Window（控件容器）：</h5><p><strong>Window</strong> 是可拖动的控件容器。点击时，Window 可获得和失去焦点。因此，实现方式与其他控件略有不同。每个 Window 都有一个 <strong>id</strong> 编号，并且其内容在一个单独的函数内声明，该函数在 Window 获得焦点时调用。</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+public class GUITest : MonoBehaviour 
+{                 
+    private Rect windowRect = new Rect (20, 20, 120, 50);
+    void OnGUI ()
+    {
+        windowRect = GUI.Window (0, windowRect, WindowFunction, "My Window");
+    }
+    void WindowFunction (int windowID) 
+    {
+        // 在此处绘制窗口内的任何控件
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="UGUI控件："><a href="#UGUI控件：" class="headerlink" title="UGUI控件："></a>UGUI控件：</h3><h4 id="Canvas（画布）："><a href="#Canvas（画布）：" class="headerlink" title="Canvas（画布）："></a>Canvas（画布）：</h4><ul>
+<li>Render Mode渲染方式</li>
+</ul>
+<ol>
+<li>Screen Space-Overlay：覆盖模式：UI元素将绘制在其他元素之前，且绘制过程独立于场景元素和摄像机位置，画布尺寸有屏幕大小和分辨率决定。</li>
+<li>Pixel Perfect：完美像素，若勾选，则会锐化屏幕显示效果</li>
+<li>Sort Order：渲染顺序，在多个Canvas中，值越大越渲染到最上层</li>
+<li>Screen Space-Camera：摄像机模式：提供UICamera，Canvas对象被绘制在一个与摄像机固定距离的平面上，且绘制效果受摄像机参数的影响<ul>
+<li>Render Camera：渲染摄像机</li>
+<li>Plane Distance：平面与摄像机的距离</li>
+<li>Sorting Layer：排序层：通过Edit–Projecy Settings-Tags and Layers 调整Canvas渲染顺序。</li>
+</ul>
+</li>
+<li>World Space：世界控件顺序，画布渲染与世界控件，与场景中其他3D物体性质相同。</li>
+</ol>
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">
+
+
+
+
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h4 id="Image（图像）："><a href="#Image（图像）：" class="headerlink" title="Image（图像）："></a>Image（图像）：</h4><h4 id="Text（文本标签）："><a href="#Text（文本标签）：" class="headerlink" title="Text（文本标签）："></a>Text（文本标签）：</h4><h4 id="Button（按钮）"><a href="#Button（按钮）" class="headerlink" title="Button（按钮）"></a>Button（按钮）</h4><p>Button(Script)：</p>
+<p>Transition：</p>
+<ol>
+<li>None：没有过渡方式</li>
+<li>Color Tint：颜色过渡，相关属性如下表</li>
+<li>Sprite Swap：精灵交换，需要使用相同功能，不同状态道德贴图</li>
+<li>Animation：动画过渡</li>
+</ol>
+<p>Color Tint：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="C:\Users\Government\Desktop\行政部门\行动部署\编程专业课练习题附件\Unity知识markdown\知识图片\图片1.png"></p>
+<p>Sprite Swap：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="C:\Users\Government\Desktop\行政部门\行动部署\编程专业课练习题附件\Unity知识markdown\知识图片\图片2.png"></p>
+<h4 id="Input-Field（输入框）："><a href="#Input-Field（输入框）：" class="headerlink" title="Input Field（输入框）："></a>Input Field（输入框）：</h4><h4 id="Toggle（开关）："><a href="#Toggle（开关）：" class="headerlink" title="Toggle（开关）："></a>Toggle（开关）：</h4><h4 id="Slider（滑块）："><a href="#Slider（滑块）：" class="headerlink" title="Slider（滑块）："></a>Slider（滑块）：</h4><p>复合型控件，background：背景颜色，默认颜色为白色，Fill Area是填充区域</p>
+<p>同时也可以挂载脚本，用来响应事件监听。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="C:\Users\Government\Desktop\行政部门\行动部署\编程专业课练习题附件\Unity知识markdown\知识图片\UGUISlider.png"></p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using System;
+using UnityEngine;
+public class Demo:MonoBehavior{
+
+void Start(){
+    
+}
+    
+ void update(){
+     
+ }   
+}
+
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h4 id="ScrollBarr（滑动条）："><a href="#ScrollBarr（滑动条）：" class="headerlink" title="ScrollBarr（滑动条）："></a>ScrollBarr（滑动条）：</h4><h3 id="布局类型："><a href="#布局类型：" class="headerlink" title="布局类型："></a>布局类型：</h3><h4 id="（自定义布局）-（自动布局）"><a href="#（自定义布局）-（自动布局）" class="headerlink" title="（自定义布局）/（自动布局）"></a>（自定义布局）/（自动布局）</h4><pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+public class GUITest : MonoBehaviour {    
+    void OnGUI () {
+        // 固定布局
+        GUI.Button (new Rect (25,25,100,30), "I am a Fixed Layout Button"); 
+        // 自动布局
+        GUILayout.Button ("I am an Automatic Layout Button");
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>自动布局区域：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Demo : MonoBehaviour
+{
+   private void OnGUI()
+    {
+            GUILayout.Button("I am not inside an Area");
+GUILayout.BeginArea(new Rect(Screen.width / 2, Screen.height / 2, 300, 300));
+            GUILayout.Button("I am completely inside an Area");
+            GUILayout.EndArea();
+        }
+    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>自动布局–水平和垂直组：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="Grid-Layout-Group（网格组布局）："><a href="#Grid-Layout-Group（网格组布局）：" class="headerlink" title="Grid Layout Group（网格组布局）："></a>Grid Layout Group（网格组布局）：</h4><h4 id="Horizontal-Layout-Group（水平布局组）："><a href="#Horizontal-Layout-Group（水平布局组）：" class="headerlink" title="Horizontal Layout Group（水平布局组）："></a>Horizontal Layout Group（水平布局组）：</h4><h4 id="Vertical-Layout-Group（垂直布局组）："><a href="#Vertical-Layout-Group（垂直布局组）：" class="headerlink" title="Vertical Layout Group（垂直布局组）："></a>Vertical Layout Group（垂直布局组）：</h4><h4 id="Layout-Element（布局元素）："><a href="#Layout-Element（布局元素）：" class="headerlink" title="Layout Element（布局元素）："></a>Layout Element（布局元素）：</h4><h3 id="EventSystem：事件处理："><a href="#EventSystem：事件处理：" class="headerlink" title="EventSystem：事件处理："></a>EventSystem：事件处理：</h3><p>事件处理流程：</p>
+<ol>
+<li>EventSystem 每帧调用BaseInputModule中Process方法</li>
+</ol>
+<p>（实现：StandloneInputModule/TouchInputModule）</p>
+<ol start="2">
+<li>计算光标接触的物体（Graphics）</li>
+</ol>
+<p>–Process方法调用BaseRaycaster的Raycast方法获取所有Graphic。</p>
+<p>（实现类：GraphicRaycaster/PhysicsRaycaster/Physics2DRaycaster）</p>
+<p>–通过Graphic的IsRaycastLocationValid 方法确定光标选中的Graphic。</p>
+<ol start="3">
+<li>通过ExecuteEvents 引发物体的相关事件。</li>
+</ol>
+<p>–调用Execute方法获取相关接口类型对象，再调用其接口方法。</p>
+<p>事件注册：</p>
+<ol>
+<li>通过编辑器绑定方法</li>
+<li>AddListener</li>
+<li>实现接口</li>
+<li>自定义框架</li>
+</ol>
+<h4 id="IPointer-鼠标指针类："><a href="#IPointer-鼠标指针类：" class="headerlink" title="IPointer 鼠标指针类："></a>IPointer 鼠标指针类：</h4><ul>
+<li>IPointerEnterHandler - OnPointerEnter - 当指针进入对象时调用</li>
+<li>IPointerExitHandler - OnPointerExit - 当指针退出对象时调用</li>
+<li>IPointerDownHandler - OnPointerDown - 在对象上按下指针时调用</li>
+<li>IPointerUpHandler - OnPointerUp - 松开指针时调用（在指针正在点击的游戏对象上调用）</li>
+<li>IPointerClickHandler - OnPointerClick - 在同一对象上按下再松开指针时调用</li>
+</ul>
+<h4 id="拖拽类："><a href="#拖拽类：" class="headerlink" title="拖拽类："></a>拖拽类：</h4><ul>
+<li>IInitializePotentialDragHandler - OnInitializePotentialDrag - 在找到拖动目标时调用，可用于初始化值</li>
+<li>IBeginDragHandler - OnBeginDrag - 即将开始拖动时在拖动对象上调用</li>
+<li>IDragHandler - OnDrag - 发生拖动时在拖动对象上调用</li>
+<li>IEndDragHandler - OnEndDrag - 拖动完成时在拖动对象上调用</li>
+<li>IDropHandler - OnDrop - 在拖动目标对象上调用</li>
+</ul>
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using System;
+using UnityEngine;
+public class Demo:MonoBehavior{
+private RectTransform parentTF;
+    private void Start(){
+        parentTF = new Transform.parent as RectTransform; 
+    }
+
+    
+ //光标按下时执行
+  private Vector3 downOffest;  //3维向量
+  public void OnPointerDown(PointerEventData eventdata){
+      //记录偏移位置
+      Vector3 downWoldPos;
+ RectTransformUtility.ScreenPointToWorld
+  }
+}
+
+
+
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="点选类："><a href="#点选类：" class="headerlink" title="点选类："></a>点选类：</h4><ul>
+<li>IUpdateSelectedHandler - OnUpdateSelected - 每次勾选时在选定对象上调用</li>
+<li>ISelectHandler - OnSelect - 当对象成为选定对象时调用</li>
+<li>IDeselectHandler - OnDeselect - 取消选择选定对象时调用</li>
+</ul>
+<h4 id="输入类："><a href="#输入类：" class="headerlink" title="输入类："></a>输入类：</h4><ul>
+<li>IScrollHandler - OnScroll - 当鼠标滚轮滚动时调用</li>
+<li>IMoveHandler - OnMove - 发生移动事件（上、下、左、右等）时调用</li>
+<li>ISubmitHandler - OnSubmit - 按下 Submit 按钮时调用</li>
+<li>ICancelHandler - OnCancel - 按下 Cancel 按钮时调用</li>
+</ul>
+<h3 id="ITween-动画库：（完成）"><a href="#ITween-动画库：（完成）" class="headerlink" title="ITween 动画库：（完成）"></a>ITween 动画库：（完成）</h3><p>常用API：</p>
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">using UnityEngine;
+using System.Collections;
+public class ITweenDemo:MonoBehavior{
+public iTween.EaseType type;
+public GameObject targetTF;
+    
+   public void ItweenMovement(){
+ //iTween.MoveTo(targetTF, transform.position, 1);
+    iTween.MoveTo(targetTF,iTween,Hash
+ ("position",transform.position,
+  "time",1,
+  "easetype",type,
+  "oncomplete","Fun1",
+  "oncompletertarget",gameobject
+ ));
+   }   
+   private void Fun1(){
+       print("结束了");
+   }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
                 
             </div>
             <hr/>
@@ -1665,7 +2525,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">99.9k</span>&nbsp;字
+                class="white-color">108.5k</span>&nbsp;字
             
             
             

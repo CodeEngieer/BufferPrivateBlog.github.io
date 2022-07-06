@@ -706,21 +706,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-07-04
+                    2022-07-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    733
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -743,7 +743,81 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="JSP简介与本质"><a href="#JSP简介与本质" class="headerlink" title="JSP简介与本质"></a>JSP简介与本质</h1><ul>
+<li>就像其他普通的网页一样，您的浏览器发送一个HTTP请求给服务器。</li>
+<li>Web服务器识别出这是一个对JSP网页的请求，并且将该请求传递给JSP引擎。通过使用URL或者.jsp文件来完成。</li>
+<li>JSP引擎从磁盘中载入JSP文件，然后将它们转化为servlet。这种转化只是简单地将所有模板文本改用println()语句，并且将所有的JSP元素转化成Java代码。</li>
+<li>JSP引擎将servlet编译成可执行类，并且将原始请求传递给servlet引擎。</li>
+<li>Web服务器的某组件将会调用servlet引擎，然后载入并执行servlet类。在执行过程中，servlet产生HTML格式的输出并将其内嵌于HTTP response中上交给Web服务器。</li>
+<li>Web服务器以静态HTML网页的形式将HTTP response返回到您的浏览器中。</li>
+<li>最终，Web浏览器处理HTTP response中动态产生的HTML网页，就好像在处理静态网页一样。</li>
+</ul>
+<p>生命周期：</p>
+<ul>
+<li><p><strong>编译阶段：</strong></p>
+<p>servlet容器编译servlet源文件，生成servlet类</p>
+</li>
+<li><p>初始化阶段：</p>
+<p>加载与JSP对应的servlet类，创建其实例，并调用它的初始化方法</p>
+</li>
+<li><p>执行阶段：</p>
+<p>调用与JSP对应的servlet实例的服务方法</p>
+</li>
+<li><p>销毁阶段：</p>
+<p>调用与JSP对应的servlet实例的销毁方法，然后销毁servlet实例</p>
+</li>
+</ul>
+<p>JSP编译：</p>
+<p>当浏览器请求JSP页面时，JSP引擎会首先去检查是否需要编译这个文件。如果这个文件没有被编译过，或者在上次编译后被更改过，则编译这个JSP文件。</p>
+<p>编译的过程包括三个步骤：</p>
+<ul>
+<li>解析JSP文件。</li>
+<li>将JSP文件转为servlet。</li>
+<li>编译servlet。</li>
+</ul>
+<h2 id="基础语法："><a href="#基础语法：" class="headerlink" title="基础语法："></a>基础语法：</h2><p>注释方式：</p>
+<p>继承于前端html属性和java属性，注释方式有以下三种</p>
+<ol>
+<li></li>
+</ol>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token operator">&lt;</span><span class="token operator">%</span>  代码片段   <span class="token operator">%</span><span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>代码示例：</p>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp">&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;测试程序&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        这是一段测试程序，如果你看到这段文字说明程序成功运行&lt;br/&gt;
+        &lt;%out.println("你的IP地址为" + request.getRemoteAddr());%&gt;        
+    &lt;/body&gt;    
+&lt;/html&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="常用脚本"><a href="#常用脚本" class="headerlink" title="常用脚本"></a>常用脚本</h2><h3 id="声明脚本"><a href="#声明脚本" class="headerlink" title="声明脚本"></a>声明脚本</h3><h3 id="表达式脚本"><a href="#表达式脚本" class="headerlink" title="表达式脚本"></a>表达式脚本</h3><h3 id="代码脚本"><a href="#代码脚本" class="headerlink" title="代码脚本"></a>代码脚本</h3><p>格式：&lt;% java语句  %&gt;</p>
+<p>作用：在JSP页面中可以编写需要的java语句</p>
+<p>特点：</p>
+<ol>
+<li>代码脚本翻译后都在_jspService方法中，故代码脚本可以直接使用此方法中的参数对象。</li>
+<li>可以由多个代码脚本块组合完成一个完整的java语句</li>
+<li>代码脚本还可以和表达式脚本一起组合使用，在JSP页面上输出数据</li>
+</ol>
+<p>代码示例：</p>
+<pre class="line-numbers language-jsp" data-language="jsp"><code class="language-jsp"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h2 id="内置对象-四大域对象"><a href="#内置对象-四大域对象" class="headerlink" title="内置对象/四大域对象"></a>内置对象/四大域对象</h2><p>request：请求对象</p>
+<p>response：响应对象</p>
+<p>pageContext：JSP的上下文对象</p>
+<p>session：绘画对象</p>
+<p>application：ServletContext对象</p>
+<p>config：ServletConfig对象</p>
+<p>out：JSP输出流对象</p>
+<p>page：指向当前JSP的对象</p>
+<p>exception：异常对象</p>
+
                 
             </div>
             <hr/>
@@ -1276,18 +1350,17 @@ new Valine({
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/BufferPrivateBlog.github.io/posts/bea422de.html">
+                <a href="/BufferPrivateBlog.github.io/posts/a102b82e.html">
                     <div class="card-image">
                         
                         
-                        <img src="/BufferPrivateBlog.github.io/medias/featureimages/13.png" class="responsive-img" alt="JSP服务器">
+                        <img src="/BufferPrivateBlog.github.io/medias/featureimages/7.png" class="responsive-img" alt="Java log4j日志使用">
                         
-                        <span class="card-title">JSP服务器</span>
+                        <span class="card-title">Java log4j日志使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1297,9 +1370,9 @@ new Valine({
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-04
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-05
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -1308,7 +1381,6 @@ new Valine({
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -1598,7 +1670,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">99.9k</span>&nbsp;字
+                class="white-color">108.5k</span>&nbsp;字
             
             
             

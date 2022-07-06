@@ -723,21 +723,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-07-01
+                    2022-07-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    3.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    14 分
                 </div>
                 
 
@@ -887,7 +887,8 @@
 
 
 
-<h2 id="Math类："><a href="#Math类：" class="headerlink" title="Math类："></a>Math类：</h2><p>常用API：</p>
+<h2 id="Math类：（完成）"><a href="#Math类：（完成）" class="headerlink" title="Math类：（完成）"></a>Math类：（完成）</h2><p>静态类函数，public static 修饰，可以直接在方法中使用，无需声明。</p>
+<p>常用API：</p>
 <table>
 <thead>
 <tr>
@@ -909,17 +910,29 @@
 </tr>
 <tr>
 <td>pow();</td>
-<td></td>
+<td>//计算指数函数值</td>
+</tr>
+<tr>
+<td>max<br>min</td>
+<td>//求出数值中最大值/最小值</td>
+</tr>
+<tr>
+<td>round();</td>
+<td>//对数字进行四舍五入得到</td>
+</tr>
+<tr>
+<td>ceil(a,b);</td>
+<td>返回大于等于( &gt;= )给定参数的的最小整数，类型为双精度浮点型。</td>
+</tr>
+<tr>
+<td>cos<br>sin<br>tan</td>
+<td>三角函数的计算</td>
+</tr>
+<tr>
+<td>floor();</td>
+<td>返回小于等于（&lt;=）给定参数的最大整数 。</td>
 </tr>
 </tbody></table>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token function">abs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//absolute 计算绝对值</span>
-<span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//计算方根 </span>
-<span class="token function">cell</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>  
-<span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  生成一个<span class="token number">0</span><span class="token operator">~</span><span class="token number">1.0</span>之间随机值
-<span class="token function">round</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">pow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//计算指数函数值</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>代码示例：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">demo</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
@@ -998,11 +1011,10 @@
 
 
 
-<h2 id="RunTime类："><a href="#RunTime类：" class="headerlink" title="RunTime类："></a>RunTime类：</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
-<span class="token class-name">RunTime</span><span class="token punctuation">(</span>runtime runtime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h2 id="RunTime类：-完成"><a href="#RunTime类：-完成" class="headerlink" title="RunTime类：(完成)"></a>RunTime类：(完成)</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">RunTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-构造函数：
- <span class="token class-name">RunTime</span> run <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RunTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">//构造函数：</span>
+ <span class="token class-name">RunTime</span> run <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RunTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>常用API：</p>
 <table>
@@ -1034,7 +1046,10 @@
 </tr>
 </tbody></table>
 <p>代码示例：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Runtime</span> rt <span class="token operator">=</span> <span class="token class-name">Runtime</span><span class="token punctuation">.</span><span class="token function">getRuntime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 获取</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">Duration</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Runtime</span> rt <span class="token operator">=</span> <span class="token class-name">Runtime</span><span class="token punctuation">.</span><span class="token function">getRuntime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 获取</span>
 <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"处理器的个数: "</span> <span class="token operator">+</span> rt<span class="token punctuation">.</span><span class="token function">availableProcessors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"个"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"空闲内存数量: "</span> <span class="token operator">+</span> rt<span class="token punctuation">.</span><span class="token function">freeMemory</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1024</span> <span class="token operator">/</span> <span class="token number">1024</span> 
  <span class="token operator">+</span> <span class="token string">"M"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1042,23 +1057,29 @@
  <span class="token number">1024</span> <span class="token operator">+</span> <span class="token string">"M"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"虚拟机中内存总量: "</span> <span class="token operator">+</span> rt<span class="token punctuation">.</span><span class="token function">totalMemory</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1024</span> <span class="token operator">/</span> 
 <span class="token number">1024</span> <span class="token operator">+</span> <span class="token string">"M"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-操作系统进程：
+<span class="token comment">//操作系统进程：</span>
 <span class="token keyword">try</span><span class="token punctuation">{</span>
  rt<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">"notepad.exe"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
   e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-关闭进程：
+<span class="token comment">//关闭进程：</span>
   <span class="token class-name">Process</span> process <span class="token operator">=</span> rt<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">"notepad.exe"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//得到表示进程的process对象</span>
   <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   process<span class="token punctuation">.</span><span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="时间常用类："><a href="#时间常用类：" class="headerlink" title="时间常用类："></a>时间常用类：</h2><h3 id="LocalTime类"><a href="#LocalTime类" class="headerlink" title="LocalTime类"></a>LocalTime类</h3><p>构造函数：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 
-<h2 id="LocalTime类"><a href="#LocalTime类" class="headerlink" title="LocalTime类"></a>LocalTime类</h2><h2 id="Date类："><a href="#Date类：" class="headerlink" title="Date类："></a>Date类：</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Date</span><span class="token punctuation">;</span>
-构造函数：
-<span class="token class-name">Date</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 
 <p>常用API：</p>
 <table>
@@ -1073,18 +1094,302 @@
 <td></td>
 </tr>
 </tbody></table>
+<h3 id="Date类："><a href="#Date类：" class="headerlink" title="Date类："></a>Date类：</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        
+<span class="token comment">//此种形式表示分配 Date 对象并初始化此对象，以表示分配它的时间（精确到毫秒），使用该构造方法创建的对象可以获取本地的当前时间。</span>
+<span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token keyword">long</span> date<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//此种形式表示从 GMT 时间（格林尼治时间）1970 年 1 月 1 日 0 时 0 分 0 秒开始经过参数 date 指定的毫秒数。</span>
+
+<span class="token comment">//代码示例：</span>
+<span class="token class-name">Date</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>常用API：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean after(Date when)</td>
+<td>判断此日期是否在指定日期之后</td>
+</tr>
+<tr>
+<td>boolean before(Date when)</td>
+<td>判断此日期是否在指定日期之前</td>
+</tr>
+<tr>
+<td>int compareTo(Date anotherDate)</td>
+<td>比较两个日期的顺序</td>
+</tr>
+<tr>
+<td>boolean equals(Object obj)</td>
+<td>比较两个日期的相等性</td>
+</tr>
+<tr>
+<td>long getTime()</td>
+<td>返回自 1970 年 1 月 1 日 00:00:00 GMT 以来，此 Date 对象表示的毫秒数</td>
+</tr>
+<tr>
+<td>String toString()</td>
+<td>把此 Date 对象转换为以下形式的 String: dow mon dd hh:mm:ss zzz yyyy。 其中 dow 是一周中的某一天(Sun、Mon、Tue、Wed、Thu、Fri 及 Sat)</td>
+</tr>
+</tbody></table>
 <p>代码示例：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">demo</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo</span><span class="token punctuation">{</span>
 <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    
+    <span class="token class-name">Date</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
      <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="Duration类"><a href="#Duration类" class="headerlink" title="Duration类"></a>Duration类</h3><p>构造函数：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
-<h2 id="Duration类"><a href="#Duration类" class="headerlink" title="Duration类"></a>Duration类</h2><h2 id="Applet类"><a href="#Applet类" class="headerlink" title="Applet类"></a>Applet类</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>applet<span class="token punctuation">.</span></span><span class="token class-name">Applet</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p>常用API：</p>
+<table>
+<thead>
+<tr>
+<th>常用API</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>plusNanos()<br>plusMillis()<br>plusSeconds()<br>plusMinutes()<br>plusHours()<br>plusDays()</td>
+<td>返回此持续时间的副本，并添加指定的持续时间（以纳秒为单位）</td>
+</tr>
+<tr>
+<td>minusNanos()<br>minusMillis()<br>minusSeconds()<br>minusMinutes()<br>minusHours()<br>minusDays()</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>代码示例：</p>
+<h3 id="Calendar类：（完成）"><a href="#Calendar类：（完成）" class="headerlink" title="Calendar类：（完成）"></a>Calendar类：（完成）</h3><p>Calendar 类是一个抽象类，它为特定瞬间与 YEAR、MONTH、DAY_OF—MONTH、HOUR 等日历字段之间的转换提供了一些方法，并为操作日历字段（如获得下星期的日期） 提供了一些方法。</p>
+<p>由于是抽象类，但是它提供了一个getInstance();来获得Calendar类的对象</p>
+<p>构造方法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Calendar</span> calendar <span class="token operator">=</span> <span class="token class-name">Calendar</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>常用API：</p>
+<table>
+<thead>
+<tr>
+<th>常用API</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean after(Object when)<br>boolean before(Object when)</td>
+<td>判断此 Calendar 表示的时间是否在指定时间 when 之后，并返回判断结果<br>判断此 Calendar 表示的时间是否在指定时间 when 之前，并返回判断结果</td>
+</tr>
+<tr>
+<td>int get(int field)<br>int getActualMaximum(int field)<br>int getActualMinimum(int field)<br>int getFirstDayOfWeek()</td>
+<td>返回指定日历字段的值<br>返回指定日历字段可能拥有的最大值<br>返回指定日历字段可能拥有的最小值<br>获取一星期的第一天。根据不同的国家地区，返回不同的值</td>
+</tr>
+<tr>
+<td>void set(int field, int value)<br>void set(int year, int month, int date)<br>void set(int year, int month, int date, int hourOfDay,<br>int minute, int second)<br>void setFirstDayOfWeek(int value)<br>void setTimeInMillis(long millis)</td>
+<td>为指定的日历字段设置给定值<br>设置日历字段 YEAR、MONTH 和 DAY_OF_MONTH 的值<br>设置字段 YEAR、MONTH、DAY_OF_MONTH、HOUR、 MINUTE 和 SECOND 的值<br>设置一星期的第一天是哪一天<br>用给定的 long 值设置此 Calendar 的当前时间值</td>
+</tr>
+<tr>
+<td>static Calendar getInstance()<br>static Calendar getInstance(TimeZone zone)<br>static Calendar getInstance(TimeZone zone,<br>Locale aLocale)</td>
+<td>使用默认时区和语言坏境获得一个日历<br>使用指定时区和默认语言环境获得一个日历<br>使用指定时区和语言环境获得一个日历</td>
+</tr>
+<tr>
+<td>int compareTo(Calendar anotherCalendar)</td>
+<td>比较两个 Calendar 对象表示的时间值（从格林威治时间 1970 年 01 月 01 日<br>00 时 00 分 00 秒至现在的毫秒偏移量），大则返回 1，小则返回 -1，相等返回 0</td>
+</tr>
+<tr>
+<td>void setFirstDayOfWeek(int value)</td>
+<td>设置一星期的第一天是哪一天</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>Calendar 对象可以调用 set() 方法将日历翻到任何一个时间，当参数 year 取负数时表示公元前。Calendar 对象调用 get() 方法可以获取有关年、月、日等时间信息</p>
+<p>，参数 field 的有效值由 Calendar 静态常量指定。</p>
+<p>Calendar 类中定义了许多常量，分别表示不同的意义。</p>
+<ul>
+<li>Calendar.YEAR：年份。</li>
+<li>Calendar.MONTH：月份。</li>
+<li>Calendar.DATE：日期。</li>
+<li>Calendar.DAY_OF_MONTH：日期，和上面的字段意义完全相同。</li>
+<li>Calendar.HOUR：12小时制的小时。</li>
+<li>Calendar.HOUR_OF_DAY：24 小时制的小时。</li>
+<li>Calendar.MINUTE：分钟。</li>
+<li>Calendar.SECOND：秒。</li>
+<li>Calendar.DAY_OF_WEEK：星期几。</li>
+</ul>
+<p>代码示例：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h3 id="DateFormat类（完成）"><a href="#DateFormat类（完成）" class="headerlink" title="DateFormat类（完成）"></a>DateFormat类（完成）</h3><p>  DateFormat 是日期/时间格式化子类的抽象类，它以与语言无关的方式格式化并解析日期或时间。日期/时间格式化子类（如 SimpleDateFormat）允许进行格式化（也就是日期→文本）、解析（文本→日期）和标准化日期。</p>
+<p>在创建 DateFormat 对象时不能使用 new 关键字，而应该使用 DateFormat 类中的静态方法 getDateInstance()，示例代码如下：  </p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">DateFormat</span> df <span class="token operator">=</span> <span class="token class-name">DateFormat</span><span class="token punctuation">.</span><span class="token function">getDatelnstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>String format(Date date)</td>
+<td>将 Date 格式化日期/时间字符串</td>
+</tr>
+<tr>
+<td>Calendar getCalendar()</td>
+<td>获取与此日期/时间格式相关联的日历</td>
+</tr>
+<tr>
+<td>static DateFormat getDateInstance()</td>
+<td>获取具有默认格式化风格和默认语言环境的日期格式</td>
+</tr>
+<tr>
+<td>static DateFormat getDateInstance(int style)</td>
+<td>获取具有指定格式化风格和默认语言环境的日期格式</td>
+</tr>
+<tr>
+<td>static DateFormat getDateInstance(int style, Locale locale)</td>
+<td>获取具有指定格式化风格和指定语言环境的日期格式</td>
+</tr>
+<tr>
+<td>static DateFormat getDateTimeInstance()</td>
+<td>获取具有默认格式化风格和默认语言环境的日期/时间 格式</td>
+</tr>
+<tr>
+<td>static DateFormat getDateTimeInstance(int dateStyle,int timeStyle)</td>
+<td>获取具有指定日期/时间格式化风格和默认语言环境的 日期/时间格式</td>
+</tr>
+<tr>
+<td>static DateFormat getDateTimeInstance(int dateStyle,int timeStyle,Locale locale)</td>
+<td>获取具有指定日期/时间格式化风格和指定语言环境的 日期/时间格式</td>
+</tr>
+<tr>
+<td>static DateFormat getTimeInstance()</td>
+<td>获取具有默认格式化风格和默认语言环境的时间格式</td>
+</tr>
+<tr>
+<td>static DateFormat getTimeInstance(int style)</td>
+<td>获取具有指定格式化风格和默认语言环境的时间格式</td>
+</tr>
+<tr>
+<td>static DateFormat getTimeInstance(int style, Locale locale)</td>
+<td>获取具有指定格式化风格和指定语言环境的时间格式</td>
+</tr>
+<tr>
+<td>void setCalendar(Calendar newCalendar)</td>
+<td>为此格式设置日历</td>
+</tr>
+<tr>
+<td>Date parse(String source)</td>
+<td>将给定的字符串解析成日期/时间</td>
+</tr>
+</tbody></table>
+<p>DateFormat 类的常量如下。</p>
+<ul>
+<li>SHORT：完全为数字，如 12.5.10 或 5:30pm。</li>
+<li>MEDIUM：较长，如 May 10，2016。</li>
+<li>LONG：更长，如 May 12，2016 或 11:15:32am。</li>
+<li>FULL：是完全指定，如 Tuesday、May 10、2012 AD 或 11:l5:42am CST。</li>
+</ul>
+<p>代码示例：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">
+
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SimpleDateFormat"><a href="#SimpleDateFormat" class="headerlink" title="SimpleDateFormat"></a>SimpleDateFormat</h4><p>构造方法：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token class-name">String</span> pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token class-name">String</span> pattern<span class="token punctuation">,</span><span class="token class-name">Local</span> locale<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//代码示例</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<table>
+<thead>
+<tr>
+<th>字母</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>y</td>
+<td>年份。一般用 yy 表示两位年份，yyyy 表示 4 位年份</td>
+<td>使用 yy 表示的年扮，如 11； 使用 yyyy 表示的年份，如 2011</td>
+</tr>
+<tr>
+<td>M</td>
+<td>月份。一般用 MM 表示月份，如果使用 MMM，则会 根据语言环境显示不同语言的月份</td>
+<td>使用 MM 表示的月份，如 05； 使用 MMM 表示月份，在 Locale.CHINA 语言环境下，如“十月”；在 Locale.US 语言环境下，如 Oct</td>
+</tr>
+<tr>
+<td>d</td>
+<td>月份中的天数。一般用 dd 表示天数</td>
+<td>使用 dd 表示的天数，如 10</td>
+</tr>
+<tr>
+<td>D</td>
+<td>年份中的天数。表示当天是当年的第几天， 用 D 表示</td>
+<td>使用 D 表示的年份中的天数，如 295</td>
+</tr>
+<tr>
+<td>E</td>
+<td>星期几。用 E 表示，会根据语言环境的不同， 显示不 同语言的星期几</td>
+<td>使用 E 表示星期几，在 Locale.CHINA 语 言环境下，如“星期四”；在 Locale.US 语 言环境下，如 Thu</td>
+</tr>
+<tr>
+<td>H</td>
+<td>一天中的小时数（0~23)。一般用 HH 表示小时数</td>
+<td>使用 HH 表示的小时数，如 18</td>
+</tr>
+<tr>
+<td>h</td>
+<td>一天中的小时数（1~12)。一般使用 hh 表示小时数</td>
+<td>使用 hh 表示的小时数，如 10 (注意 10 有 可能是 10 点，也可能是 22 点）</td>
+</tr>
+<tr>
+<td>m</td>
+<td>分钟数。一般使用 mm 表示分钟数</td>
+<td>使用 mm 表示的分钟数，如 29</td>
+</tr>
+<tr>
+<td>s</td>
+<td>秒数。一般使用 ss 表示秒数</td>
+<td>使用 ss 表示的秒数，如 38</td>
+</tr>
+<tr>
+<td>S</td>
+<td>毫秒数。一般使用 SSS 表示毫秒数</td>
+<td>使用 SSS 表示的毫秒数，如 156</td>
+</tr>
+</tbody></table>
+<p>代码示例：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SimpleDateFormatDemo</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> staticc <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
+     <span class="token class-name">Date</span> now <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 创建一个Date对象，获取当前时间</span>
+        <span class="token comment">// 指定格式化格式</span>
+        <span class="token class-name">SimpleDateFormat</span> f <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token string">"今天是 "</span> <span class="token operator">+</span> <span class="token string">"yyyy 年 MM 月 dd 日 E HH 点 mm 分 ss 秒"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>f<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>now<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 将当前时间袼式化为指定的格式</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Applet类"><a href="#Applet类" class="headerlink" title="Applet类"></a>Applet类</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>applet<span class="token punctuation">.</span></span><span class="token class-name">Applet</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="播放音频："><a href="#播放音频：" class="headerlink" title="播放音频："></a>播放音频：</h3><p>常用API：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1988,7 +2293,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">99.9k</span>&nbsp;字
+                class="white-color">108.5k</span>&nbsp;字
             
             
             
