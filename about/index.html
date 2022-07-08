@@ -20,6 +20,8 @@
     <title>关于 | Clover Days</title>
 
     <link rel="icon" type="image/png" href="/BufferPrivateBlog.github.io/favicon.png">
+    <link rel="stylesheet" type="text/css" href="/BufferPrivateBlog.github.io/css/loading.css">
+    <link rel="stylesheet" type="text/css" href="/BufferPrivateBlog.github.io/css/loading.css">
 
     <link rel="stylesheet" type="text/css" href="/BufferPrivateBlog.github.io/libs/awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="/BufferPrivateBlog.github.io/libs/materialize/materialize.min.css">
@@ -600,7 +602,7 @@
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/BufferPrivateBlog.github.io/">21</a></span>
+    <span class="count"><a href="/BufferPrivateBlog.github.io/">22</a></span>
     <span class="name">文章</span>
 </div>
 
@@ -630,7 +632,7 @@
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/BufferPrivateBlog.github.io/">21</a></span>
+    <span class="count"><a href="/BufferPrivateBlog.github.io/">22</a></span>
     <span class="name">文章</span>
 </div>
 
@@ -788,7 +790,7 @@
                 name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,0,3,0,0,15,3],
+                data: [0,0,0,0,0,0,0,0,3,0,0,15,4],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -1235,6 +1237,29 @@
     </div>
 </main>
 
+    
+    <div id="loading-box">
+      <div class="loading-left-bg"></div>
+      <div class="loading-right-bg"></div>
+      <div class="spinner-box">
+        <div class="configure-border-1">
+          <div class="configure-core"></div>
+        </div>
+        <div class="configure-border-2">
+          <div class="configure-core"></div>
+        </div>
+        <div class="loading-word">加载中...</div>
+      </div>
+    </div>
+    <!-- 页面加载动画 -->
+    <script>
+      $(document).ready(function () {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loading-box').classList.add("loaded")
+      })
+    </script>
+  
+  
 
     <footer class="page-footer bg-color">
     
@@ -1305,7 +1330,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">108.5k</span>&nbsp;字
+                class="white-color">111.2k</span>&nbsp;字
             
             
             

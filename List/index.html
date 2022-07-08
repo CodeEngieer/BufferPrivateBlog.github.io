@@ -20,6 +20,8 @@
     <title>放松一下 | Clover Days</title>
 
     <link rel="icon" type="image/png" href="/BufferPrivateBlog.github.io/favicon.png">
+    <link rel="stylesheet" type="text/css" href="/BufferPrivateBlog.github.io/css/loading.css">
+    <link rel="stylesheet" type="text/css" href="/BufferPrivateBlog.github.io/css/loading.css">
 
     <link rel="stylesheet" type="text/css" href="/BufferPrivateBlog.github.io/libs/awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="/BufferPrivateBlog.github.io/libs/materialize/materialize.min.css">
@@ -1515,6 +1517,29 @@ new Valine({
 
 
 
+    
+    <div id="loading-box">
+      <div class="loading-left-bg"></div>
+      <div class="loading-right-bg"></div>
+      <div class="spinner-box">
+        <div class="configure-border-1">
+          <div class="configure-core"></div>
+        </div>
+        <div class="configure-border-2">
+          <div class="configure-core"></div>
+        </div>
+        <div class="loading-word">加载中...</div>
+      </div>
+    </div>
+    <!-- 页面加载动画 -->
+    <script>
+      $(document).ready(function () {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loading-box').classList.add("loaded")
+      })
+    </script>
+  
+  
 
     <footer class="page-footer bg-color">
     
@@ -1585,7 +1610,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">108.5k</span>&nbsp;字
+                class="white-color">111.2k</span>&nbsp;字
             
             
             

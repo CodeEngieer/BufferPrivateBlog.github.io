@@ -20,6 +20,8 @@
     <title>C#IO流 | Clover Days</title>
 
     <link rel="icon" type="image/png" href="/BufferPrivateBlog.github.io/favicon.png">
+    <link rel="stylesheet" type="text/css" href="/BufferPrivateBlog.github.io/css/loading.css">
+    <link rel="stylesheet" type="text/css" href="/BufferPrivateBlog.github.io/css/loading.css">
 
     <link rel="stylesheet" type="text/css" href="/BufferPrivateBlog.github.io/libs/awesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="/BufferPrivateBlog.github.io/libs/materialize/materialize.min.css">
@@ -723,14 +725,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-07-01
+                    2022-07-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.2k
+                    3.5k
                 </div>
                 
 
@@ -940,6 +942,52 @@ public class Program
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="FileSystemInfo（通用文件操作）"><a href="#FileSystemInfo（通用文件操作）" class="headerlink" title="FileSystemInfo（通用文件操作）"></a>FileSystemInfo（通用文件操作）</h3><p>构造方法：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">FileSystemInfo();
+
+FileSystemInfo fsi = new FileSystemInfo();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>用途：该FileSystemInfo类包含文件和目录操作通用的方法，对象FileSystemInfo可以表示文件或目录，从而充当或DirectoryInfo对象的基础FileInfo。分析大量文件和目录时，请使用此基类。</p>
+<p>常用属性：</p>
+<table>
+<thead>
+<tr>
+<th>常用属性</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Arributes</td>
+<td>获取或设置当前文件或目录的特性。</td>
+</tr>
+<tr>
+<td>Exists</td>
+<td>获取指示文件或目录是否存在的值。</td>
+</tr>
+<tr>
+<td>Extension</td>
+<td>获取文件名的扩展名部分，包括前导点 <code>。</code> 即使它是整个文件名，或者不存在扩展名的空字符串。</td>
+</tr>
+<tr>
+<td>FullName</td>
+<td>获取目录或文件的完整目录。</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>对于文件，获取该文件的名称。 对于目录，如果存在层次结构，则获取层次结构中最后一个目录的名称。 否则，<code>Name</code> 属性获取该目录的名称。</td>
+</tr>
+<tr>
+<td>CreationTime</td>
+<td>获取或设置当前文件或目录的创建时间。</td>
+</tr>
+</tbody></table>
+<p>常用API：继承File类</p>
+<p>代码示例：</p>
+<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">
+
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="FileInfo类（文件操作）"><a href="#FileInfo类（文件操作）" class="headerlink" title="FileInfo类（文件操作）"></a>FileInfo类（文件操作）</h3><p>构造方法：</p>
 <pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">FileInfo info = new FileInfo(String path);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -2145,6 +2193,29 @@ new Valine({
 
 
 
+    
+    <div id="loading-box">
+      <div class="loading-left-bg"></div>
+      <div class="loading-right-bg"></div>
+      <div class="spinner-box">
+        <div class="configure-border-1">
+          <div class="configure-core"></div>
+        </div>
+        <div class="configure-border-2">
+          <div class="configure-core"></div>
+        </div>
+        <div class="loading-word">加载中...</div>
+      </div>
+    </div>
+    <!-- 页面加载动画 -->
+    <script>
+      $(document).ready(function () {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loading-box').classList.add("loaded")
+      })
+    </script>
+  
+  
 
     <footer class="page-footer bg-color">
     
@@ -2215,7 +2286,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">108.5k</span>&nbsp;字
+                class="white-color">111.2k</span>&nbsp;字
             
             
             
