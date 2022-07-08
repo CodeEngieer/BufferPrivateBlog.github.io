@@ -61,6 +61,29 @@
 
 
 <body>
+    
+    <div id="loading-box">
+      <div class="loading-left-bg"></div>
+      <div class="loading-right-bg"></div>
+      <div class="spinner-box">
+        <div class="configure-border-1">
+          <div class="configure-core"></div>
+        </div>
+        <div class="configure-border-2">
+          <div class="configure-core"></div>
+        </div>
+        <div class="loading-word">加载中...</div>
+      </div>
+    </div>
+    <!-- 页面加载动画 -->
+    <script>
+      $(document).ready(function () {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loading-box').classList.add("loaded")
+      })
+    </script>
+  
+  
     <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
@@ -605,7 +628,7 @@
                       <div class="moleskine-notebook">
                           <div class="chip notebook-cover center-align waves-effect waves-light
                            chip-default "
-                                  style="background-color: #85C785;">                                               
+                                  style="background-color: #219C6E;">                                               
                               <div class="notebook-skin
                                    chip-default "
                                   >后端编程语言                                  
@@ -622,7 +645,7 @@
                       <div class="moleskine-notebook">
                           <div class="chip notebook-cover center-align waves-effect waves-light
                            chip-default "
-                                  style="background-color: #46A813;">                                               
+                                  style="background-color: #6CFE55;">                                               
                               <div class="notebook-skin
                                    chip-default "
                                   >引擎框架                                  
@@ -639,7 +662,7 @@
                       <div class="moleskine-notebook">
                           <div class="chip notebook-cover center-align waves-effect waves-light
                            chip-default "
-                                  style="background-color: #F89F62;">                                               
+                                  style="background-color: #97E721;">                                               
                               <div class="notebook-skin
                                    chip-default "
                                   >前端编程语言                                  
@@ -656,7 +679,7 @@
                       <div class="moleskine-notebook">
                           <div class="chip notebook-cover center-align waves-effect waves-light
                            chip-active "
-                                  style="background-color: #D8CCDA;">                                               
+                                  style="background-color: #AB8B08;">                                               
                               <div class="notebook-skin
                                    chip-active "
                                   >计算机原理                                  
@@ -673,7 +696,7 @@
                       <div class="moleskine-notebook">
                           <div class="chip notebook-cover center-align waves-effect waves-light
                            chip-default "
-                                  style="background-color: #D4BB3B;">                                               
+                                  style="background-color: #A18269;">                                               
                               <div class="notebook-skin
                                    chip-default "
                                   >数据结构与算法                                  
@@ -690,7 +713,7 @@
                       <div class="moleskine-notebook">
                           <div class="chip notebook-cover center-align waves-effect waves-light
                            chip-default "
-                                  style="background-color: #A4C7AD;">                                               
+                                  style="background-color: #C6381B;">                                               
                               <div class="notebook-skin
                                    chip-default "
                                   >项目实操经验                                  
@@ -879,28 +902,6 @@
 
 
     
-    <div id="loading-box">
-      <div class="loading-left-bg"></div>
-      <div class="loading-right-bg"></div>
-      <div class="spinner-box">
-        <div class="configure-border-1">
-          <div class="configure-core"></div>
-        </div>
-        <div class="configure-border-2">
-          <div class="configure-core"></div>
-        </div>
-        <div class="loading-word">加载中...</div>
-      </div>
-    </div>
-    <!-- 页面加载动画 -->
-    <script>
-      $(document).ready(function () {
-        document.body.style.overflow = 'auto';
-        document.getElementById('loading-box').classList.add("loaded")
-      })
-    </script>
-  
-  
 
     <footer class="page-footer bg-color">
     
